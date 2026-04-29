@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "@/components/Header.jsx";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,9 +22,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen text-zinc-100`}
       >
-        {children}
+        <div className="relative overflow-hidden">
+          <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+            <Header />
+            <main className="mt-12">{children}</main>
+          </div>
+        </div>
+        <div id="newsModal-root-content" />
       </body>
     </html>
   );
