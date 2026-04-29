@@ -1,9 +1,12 @@
 import NewsCard from "@/components/NewsCard.jsx";
 import { getNews } from "@/utils/utils.js";
 import Link from "next/link.js";
+import { getDictionary } from "./dictionaries.js";
 
-export default async function Home() {
+export default async function Home({ params: { lang } }) {
   const news = await getNews();
+
+  const dictionary = await getDictionary(lang);
 
   return (
     <>
@@ -15,9 +18,11 @@ export default async function Home() {
 
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-semibold text-white">Trending Today</h2>
+          <h2 className="text-xl font-semibold text-white">
+            {dictionary.devNews}
+          </h2>
           <p className="mt-1 text-sm text-zinc-400">
-            Fresh signals from product teams and indie builders.
+            {dictionary.freshSignals}
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { formatToKIntl } from "@/utils/utils.js";
 import Image from "next/image.js";
 import Link from "next/link.js";
 
-const SingleNews = ({ newsItem }) => {
+const SingleNews = ({ newsItem, dictionary }) => {
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -10,7 +10,7 @@ const SingleNews = ({ newsItem }) => {
           href="/"
           className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white transition hover:border-cyan-300/40 hover:text-cyan-200"
         >
-          Back to home
+          {dictionary.backToHome}
         </Link>
       </div>
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
@@ -36,7 +36,9 @@ const SingleNews = ({ newsItem }) => {
                 </span>
               </div>
               <span className="text-xs text-zinc-500">•</span>
-              <span>Published on June 18, 2024</span>
+              <span>
+                {dictionary.publishedOn} {newsItem?.published_date}
+              </span>
             </div>
             <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
               <Image
@@ -58,7 +60,9 @@ const SingleNews = ({ newsItem }) => {
             style={{ animationDelay: "120ms" }}
           >
             <div className="rounded-2xl border border-white/10 bg-[var(--surface)] p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
-              <h4 className="text-sm font-semibold text-white">Engagement</h4>
+              <h4 className="text-sm font-semibold text-white">
+                {dictionary.engagement}
+              </h4>
               <div className="mt-4 space-y-3 text-sm text-zinc-300">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2">
@@ -72,7 +76,7 @@ const SingleNews = ({ newsItem }) => {
                         fill="currentColor"
                       />
                     </svg>
-                    Upvotes
+                    {dictionary.upvotes}
                   </span>
                   <span className="text-white">
                     {formatToKIntl(newsItem?.upvotes)}
@@ -90,7 +94,7 @@ const SingleNews = ({ newsItem }) => {
                         fill="currentColor"
                       />
                     </svg>
-                    Downvotes
+                    {dictionary.downvotes}
                   </span>
                   <span className="text-white">
                     {formatToKIntl(newsItem?.downvotes)}
@@ -117,7 +121,7 @@ const SingleNews = ({ newsItem }) => {
                       strokeWidth="1.4"
                     />
                   </svg>
-                  Views
+                  {dictionary.views}
                 </span>
                 <span className="text-white">
                   {formatToKIntl(newsItem?.views)}
@@ -130,7 +134,9 @@ const SingleNews = ({ newsItem }) => {
             style={{ animationDelay: "200ms" }}
           >
             <div className="rounded-2xl border border-white/10 bg-[var(--surface)] p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
-              <h4 className="text-sm font-semibold text-white">Tags</h4>
+              <h4 className="text-sm font-semibold text-white">
+                {dictionary.tags}
+              </h4>
               <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-cyan-200/80">
                 {newsItem?.tags.map((tag, index) => (
                   <span
@@ -148,7 +154,9 @@ const SingleNews = ({ newsItem }) => {
             style={{ animationDelay: "280ms" }}
           >
             <div className="rounded-2xl border border-white/10 bg-[var(--surface)] p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)]">
-              <h4 className="text-sm font-semibold text-white">Author</h4>
+              <h4 className="text-sm font-semibold text-white">
+                {dictionary.author}
+              </h4>
               <div className="mt-4 flex items-center gap-3">
                 <div className="rounded-full bg-white/10 p-[2px]">
                   <Image
@@ -164,12 +172,12 @@ const SingleNews = ({ newsItem }) => {
                     {newsItem?.author_name}
                   </p>
                   <p className="text-xs text-zinc-400">
-                    Research lead, Aurora Labs
+                    {dictionary.researchLeadAuroraLabs}
                   </p>
                 </div>
               </div>
               <p className="mt-4 text-xs text-zinc-400">
-                Published on{" "}
+                {dictionary.publishedOn}{" "}
                 <time dateTime="2024-06-18">{newsItem?.published_date}</time>
               </p>
             </div>
